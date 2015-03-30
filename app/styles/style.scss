@@ -1,0 +1,6 @@
+$icon-font-path: "../styles/fonts/"; // Change the path to the fonts
+$fa-font-path: "../styles/fonts/"; //change the fontawesome font path
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap";
+@import "fontawesome/scss/font-awesome";
+@import "toastr/toastr";
+@import "inspinia/assets/scss/style";
