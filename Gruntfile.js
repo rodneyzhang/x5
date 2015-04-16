@@ -1,4 +1,4 @@
-// Generated on 2015-03-28 using generator-ember 0.8.6
+// Generated on 2015-02-05 using generator-ember 0.8.5
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
@@ -53,9 +53,9 @@ module.exports = function (grunt) {
         },
         connect: {
             options: {
-                port: process.env.PORT || 9000,
+                port: 9000,
                 // change this to '0.0.0.0' to access the server from outside
-                hostname: process.env.IP || 'localhost'
+                hostname: 'localhost'
             },
             livereload: {
                 options: {
@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         },
         open: {
             server: {
-                path: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>'
+                path: 'http://localhost:<%= connect.options.port %>'
             }
         },
         clean: {
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/,*/*/}*.js',
+                '<%= yeoman.app %>/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/scripts/vendor/*',
                 'test/spec/{,*/}*.js'
             ]
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
             all: {
                 options: {
                     run: true,
-                    urls: ['http://<%= connect.options.hostname %>:<%= connect.options.port %>/index.html']
+                    urls: ['http://localhost:<%= connect.options.port %>/index.html']
                 }
             }
         },
@@ -140,7 +140,11 @@ module.exports = function (grunt) {
                 httpFontsPath: '/styles/fonts',
                 relativeAssets: false
             },
-            dist: {},
+            dist: {
+                options: {
+                    debugInfo: true
+                }
+            },
             server: {
                 options: {
                     debugInfo: true
@@ -164,7 +168,7 @@ module.exports = function (grunt) {
                     src: [
                         '<%= yeoman.dist %>/scripts/{,*/}*.js',
                         '<%= yeoman.dist %>/styles/{,*/}*.css',
-                        '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+                        //'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                         '<%= yeoman.dist %>/styles/fonts/*'
                     ]
                 }
@@ -208,7 +212,7 @@ module.exports = function (grunt) {
                 files: {
                     '<%= yeoman.dist %>/styles/main.css': [
                         '.tmp/styles/{,*/}*.css',
-                        '<%= yeoman.app %>/styles/{,*/}*.css'
+                        '<%= yeoman.app %>/styles/{,*/,*/*/,*/*/*/}*.css',
                     ]
                 }
             }
@@ -270,7 +274,7 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.app %>/styles/fonts/',
                         src: [
                             'bootstrap-sass-official/vendor/assets/fonts/bootstrap/**',
-                            'fontawesome/fonts/**'
+							'fontawesome/fonts/**',
                         ]
                     }
                 ]
@@ -286,11 +290,13 @@ module.exports = function (grunt) {
                             '*.{ico,txt}',
                             '.htaccess',
                             'images/{,*/}*.{webp,gif}',
-                            'styles/fonts/*'
+                            'styles/fonts/*',
+                            'styles/patterns/*',
+                            'styles/plugins/{,*/,*/*/,*/*/*/}*'
                         ]
                     }
                 ]
-            }
+            },
         },
         concurrent: {
             server: [
